@@ -9,13 +9,24 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class CityArrayAdapter extends ArrayAdapter<City> {
+    interface EditCityAdapterListener {
+        void openEditCity(City city, int position);
+    }
+
+    private EditCityAdapterListener listener;
 
     public CityArrayAdapter(Context context, ArrayList<City> cities) {
         super(context, 0, cities);
+        if (context instanceof EditCityAdapterListener) {
+            listener = (EditCityAdapterListener) context;
+        } else {
+            throw new RuntimeException(context + " must implement EditCityDialogListener");
+        }
     }
 
     @NonNull
@@ -38,6 +49,10 @@ public class CityArrayAdapter extends ArrayAdapter<City> {
         cityName.setText(city.getName());
         provinceName.setText(city.getProvince());
 
+        FloatingActionButton edit = view.findViewById(R.id.edit_button);
+        edit.setOnClickListener(v -> {
+            listener.openEditCity(city, position);
+        });
         return view;
     }
 }
