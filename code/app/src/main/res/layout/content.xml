@@ -18,20 +18,20 @@
         android:id="@+id/province_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="100"
         android:padding="20dp"
         android:text="Province"
         android:textSize="30sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="10"
         android:baselineAlignBottom="false"
         android:clickable="true"
         android:contentDescription="Edit city"
         android:focusable="true"
-        android:translationX="100dp"
         app:fabSize="auto"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
